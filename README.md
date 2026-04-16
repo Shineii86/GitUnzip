@@ -11,9 +11,19 @@
 [![GitHub Stars](https://img.shields.io/github/stars/Shineii86/GitUnzip?style=for-the-badge)](https://github.com/Shineii86/GitUnzip/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/Shineii86/GitUnzip?style=for-the-badge)](https://github.com/Shineii86/GitUnzip/fork)
 
-**Upload a zip file from your phone, watch it unzip with live progress bars, and push the entire codebase to GitHub — all from Google Colab.**
+**Upload archives (.zip, .tar.gz, .7z) from your phone, auto-create repos, get email alerts, and share via QR codes — all with live progress bars.**
 
 </div>
+
+---
+
+> ℹ️ **ENHANCED FEATURES**
+> - ✅ **Multi‑format support** — `.zip`, `.tar.gz`, `.tgz`, `.7z`
+> - ✅ **Auto‑create repository** — No need to pre‑create the repo
+> - ✅ **Email notifications** — Get alerted when upload completes
+> - ✅ **Multiple archives** — Upload several files in one go
+> - ✅ **QR code sharing** — Scan to open repo on another device
+> - ✅ **Live progress bars** — Visual feedback for extraction, copying, pushing
 
 ---
 
@@ -28,10 +38,15 @@
 
 **GitUnzip** bridges the gap between mobile file management and GitHub. It provides a seamless, animated experience for uploading entire project folders from your phone to GitHub — something that's impossible through the GitHub mobile site alone.
 
-### ✨ New in This Version
+## 🚀 What's New?
 
-- **Live Progress Bars** – Watch real‑time progress for extraction, file copying, and push operations.
-- **Cleaner UI** – Only essential fields are visible; the tool handles the rest.
+| Feature | Description |
+| :--- | :--- |
+| **Multi‑Archive Support** | Upload `.zip`, `.tar.gz`, `.tgz`, and `.7z` files. |
+| **Auto‑Create Repo** | If the repository doesn't exist, GitUnzip creates it for you. |
+| **Email Notifications** | Optional email alert when upload finishes (great for large files). |
+| **Multiple Uploads** | Select several archives at once; all will be processed. |
+| **QR Code Sharing** | Instantly generate a QR code linking to your repo. |
 
 ---
 
@@ -73,56 +88,79 @@
 
 ---
 
-## ⚙️ Configuration Options
+## ⚙️ Configuration
 
 | Parameter | Description | Example |
-|-----------|-------------|---------|
-| `GITHUB_USERNAME` | Your GitHub username. | `"Shineii86"` |
-| `GITHUB_TOKEN` | Personal Access Token with `repo` scope. | `"ghp_abc123..."` |
-| `REPO_NAME` | Target repository name (must exist). | `"my-uploaded-code"` |
-| `BRANCH` | Branch to push to. | `"main"` |
-| `OVERWRITE_BRANCH` | If `True`, force‑push; if `False`, creates a new timestamped branch. | `True` |
-| `TARGET_SUBDIR` | Subdirectory within repo (leave blank for root). | `"src"` or `""` |
+| :--- | :--- | :--- |
+| `GITHUB_USERNAME` | Your GitHub username | `"Shineii86"` |
+| `GITHUB_TOKEN` | Personal Access Token (classic) with `repo` scope | `"ghp_abc123..."` |
+| `REPO_NAME` | Repository name (auto‑created if missing) | `"my-uploaded-code"` |
+| `BRANCH` | Target branch | `"main"` |
+| `OVERWRITE_BRANCH` | Force‑push (`True`) or create new branch (`False`) | `True` |
+| `TARGET_SUBDIR` | Subdirectory in repo | `"src"` or `""` |
 
-> [!NOTE]
->  The commit message is automatically set to `📤 Uploaded By Shineii86/GitUnzip` and cannot be changed — this ensures proper attribution.
+### 📧 Email Configuration (Optional)
+
+| Parameter | Description |
+| :--- | :--- |
+| `SEND_EMAIL` | Set to `True` to enable |
+| `EMAIL_TO` | Recipient email |
+| `EMAIL_FROM` | Sender email (Gmail recommended) |
+| `EMAIL_PASSWORD` | **App Password** (not your regular password) |
+| `SMTP_SERVER` | `smtp.gmail.com` |
+| `SMTP_PORT` | `465` (SSL) or `587` (TLS) |
+
+> **Gmail Setup**: Enable 2FA and generate an [App Password](https://myaccount.google.com/apppasswords).
 
 ---
 
-## 📊 Sample Output (Animated)
+## 📊 Sample Output
 
 ```
-📱 GitUnzip - Mobile to GitHub Uploader
+📱 GitUnzip Enhanced - Mobile to GitHub Uploader
 User: Shineii86 | Repo: my-code | Branch: main
 ==================================================
 
-📤 Please select your zip file...
-   (Tap 'Choose Files' below — your phone's file picker will open)
+📦 Repository 'my-code' not found. Creating...
+✅ Repository created successfully
 
-✅ Uploaded: project.zip (2.45 MB)
+📤 Please select your archive file(s)...
+   Supported: .zip, .tar.gz, .tgz, .7z
+   (Tap 'Choose Files' — you can select multiple)
 
-📂 Extracting zip file...
+✅ Found 2 archive(s) to process
+
+📦 Processing: project.zip (2.45 MB)
+📂 Extracting...
 Extracting: 100%|████████████| 47/47 [00:00<00:00, 156.32files/s]
 ✅ Extracted 47 files/folders
-
-📥 Cloning repository Shineii86/my-code...
-✅ Repository cloned
-
-📋 Copying files to repository...
+📋 Copying to repository...
 Copying: 100%|████████████| 47/47 [00:00<00:00, 210.45files/s]
 ✅ Copied 47 files
+
+📦 Processing: data.tar.gz (5.12 MB)
+📂 Extracting...
+Extracting: 100%|████████████| 128/128 [00:01<00:00, 89.23files/s]
+✅ Extracted 128 files/folders
+📋 Copying to repository...
+Copying: 100%|████████████| 128/128 [00:00<00:00, 180.67files/s]
+✅ Copied 128 files
 
 💾 Committing changes...
 ✅ Committed: '📤 Uploaded By [Shineii86/GitUnzip]'
 
 🚀 Pushing to GitHub (branch: main)...
-   This may take a moment...
-Pushing: 100%|████████████| 100/100 [00:02<00:00, 41.23it/s]
+Pushing: 100%|████████████| 100/100 [00:03<00:00, 30.12it/s]
 ✅ Push successful!
 
+📧 Email notification sent!
+
 ==================================================
-✨ Success! Your code is now on GitHub.
-📊 View it at: https://github.com/Shineii86/my-code/tree/main
+✨ Success! Your code is on GitHub.
+📱 Scan QR code to open on another device:
+
+[QR CODE IMAGE]
+🔗 https://github.com/Shineii86/my-code/tree/main
 ```
 
 ---
@@ -160,6 +198,7 @@ This project is licensed under the **MIT License**.
 
 - [Google Colab](https://colab.research.google.com/)
 - [GitHub Personal Access Tokens](https://github.com/settings/tokens)
+- [Gmail App Passwords](https://myaccount.google.com/apppasswords)
 
 ---
 
