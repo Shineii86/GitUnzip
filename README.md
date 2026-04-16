@@ -1,6 +1,8 @@
 <div align="center">
-
+  
+<a href="https://github.com/Shineii86/GitUnzip">
 <img src="https://raw.githubusercontent.com/Shineii86/GitUnzip/main/images/GitUnzip.png" width="200px" alt="GitUnzip">
+</a>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shineii86/GitUnzip/blob/main/notebooks/GitUnzip.ipynb)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
@@ -9,33 +11,27 @@
 [![GitHub Stars](https://img.shields.io/github/stars/Shineii86/GitUnzip?style=for-the-badge)](https://github.com/Shineii86/GitUnzip/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/Shineii86/GitUnzip?style=for-the-badge)](https://github.com/Shineii86/GitUnzip/fork)
 
-**Upload a zip file from your phone, unzip it, and push the entire codebase to GitHub — all from Google Colab. No PC required.**
+**Upload a zip file from your phone, watch it unzip with live progress bars, and push the entire codebase to GitHub — all from Google Colab.**
 
 </div>
 
 ---
 
 > ℹ️ **ABOUT THIS TOOL**
-> - This notebook solves a common mobile limitation: GitHub's mobile app and website don't allow uploading folders or unzipping files.
-> - Upload a zip file from your phone's storage, and this tool extracts it and pushes all contents to a GitHub repository.
+> - **GitUnzip** solves the mobile‑to‑GitHub workflow: you can't upload folders or unzip files directly from a phone browser.
+> - Upload a zip, and this tool extracts it and pushes everything to your repository with beautiful progress animations.
 > - You need a **GitHub Personal Access Token (classic)** with `repo` scope.
-> - The target repository must already exist (create it first on GitHub).
 
 ---
 
 ## 🎯 What is This Tool?
 
-**Mobile Zip to GitHub** bridges the gap between mobile file management and GitHub. If you've ever tried to upload a project folder from your phone to GitHub, you know it's impossible—the mobile interface only allows uploading individual files, not folders, and certainly doesn't unzip archives.
+**GitUnzip** bridges the gap between mobile file management and GitHub. It provides a seamless, animated experience for uploading entire project folders from your phone to GitHub — something that's impossible through the GitHub mobile site alone.
 
-This tool lets you:
-- **Upload a zip file** directly from your phone's storage.
-- **Automatically unzip** it in the cloud.
-- **Push the entire folder structure** to a GitHub repository.
+### ✨ New in This Version
 
-Perfect for:
-- Backing up code written on mobile IDEs.
-- Sharing projects when you're away from your computer.
-- Quickly pushing downloaded templates or starter kits to GitHub.
+- **Live Progress Bars** – Watch real‑time progress for extraction, file copying, and push operations.
+- **Cleaner UI** – Only essential fields are visible; the tool handles the rest.
 
 ---
 
@@ -43,129 +39,103 @@ Perfect for:
 
 | Feature                      | Description                                                                 |
 |------------------------------|-----------------------------------------------------------------------------|
-| 📱 **Mobile‑Friendly**        | Upload zip directly from phone storage via Colab's file picker.             |
-| 📂 **Preserves Structure**    | Maintains full folder hierarchy when unzipping and pushing.                 |
-| 🌿 **Safe Branching**         | Option to create a new branch instead of overwriting existing code.         |
-| 🔒 **Secure Authentication**  | Uses GitHub Personal Access Token — no password stored.                     |
-| 🧹 **Automatic Cleanup**      | Temporary files are deleted after push.                                     |
-| ⏰ **No Local Setup**          | Runs entirely in Google Colab's cloud environment.                          |
+| 📱 **Mobile‑Friendly Upload** | Native file picker works on iOS and Android.                                |
+| 📊 **Animated Progress**      | `tqdm` progress bars for extraction, copying, and pushing.                  |
+| 🔒 **Automatic Watermark**    | Commits are signed with `📤 Uploaded By Shineii86/GitUnzip`.              |
+| 🌿 **Safe Branching**         | Option to create a new branch instead of overwriting.                       |
+| 🧹 **Automatic Cleanup**      | Temporary files are deleted after completion.                               |
 
 ---
 
 ## 🛠️ Prerequisites
 
 1. **A GitHub account**.
-2. **A target repository** (must already exist on GitHub).
+2. **A target repository** (must already exist).
 3. **A Personal Access Token (classic)** with `repo` scope.
 
 ### 🔑 How to Get a Personal Access Token
 
 1. Go to **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**.
 2. Click **Generate new token (classic)**.
-3. Check the **`repo`** scope (this grants full control of private repositories).
-4. Generate and **copy the token immediately** — you won't see it again.
-
-> 🔒 **Security Note:** Treat this token like a password. Never commit it or share it publicly.
-
-### 📁 Preparing Your Zip File
-
-- Use any file manager app on your phone to zip a folder.
-- Ensure the zip contains the files/folders you want to push to GitHub.
-- The zip can contain nested folders — the structure will be preserved.
+3. Check the **`repo`** scope.
+4. Generate and copy the token immediately.
 
 ---
 
 ## 🚀 Quick Start
 
 1. **Click the "Open in Colab" badge** above.
-2. **Enter your GitHub username and token** in the configuration form.
-3. **Specify the target repository name** (must already exist).
-4. **Run the first cell** to install dependencies.
-5. **Run the second cell** — it will prompt you to upload a zip file.
-6. **Select your zip file** from your phone's storage.
-7. **Wait for the process to complete** — you'll see a success message with a link to your repo.
+2. **Enter your GitHub username and token**.
+3. **Specify the target repository name**.
+4. **Run both cells**.
+5. When prompted, tap **"Choose Files"** and select your zip file.
+6. Watch the progress bars animate — your code will be on GitHub in seconds!
 
 ---
 
 ## ⚙️ Configuration Options
 
-| Parameter | Description | Example Value |
-|-----------|-------------|---------------|
+| Parameter | Description | Example |
+|-----------|-------------|---------|
 | `GITHUB_USERNAME` | Your GitHub username. | `"Shineii86"` |
-| `GITHUB_TOKEN` | Personal Access Token (classic) with `repo` scope. | `"ghp_abc123..."` |
+| `GITHUB_TOKEN` | Personal Access Token with `repo` scope. | `"ghp_abc123..."` |
 | `REPO_NAME` | Target repository name (must exist). | `"my-uploaded-code"` |
-| `BRANCH` | Branch to push to (default: `main`). | `"main"` or `"develop"` |
-| `COMMIT_MESSAGE` | Commit message for this upload. | `"📱 Upload code from mobile via Colab"` |
-| `OVERWRITE_BRANCH` | If `True`, force‑push to the branch. If `False`, creates a new timestamped branch. | `True` |
-| `TARGET_SUBDIR` | Subdirectory within repo to place files (leave blank for root). | `"src"` or `""` |
+| `BRANCH` | Branch to push to. | `"main"` |
+| `OVERWRITE_BRANCH` | If `True`, force‑push; if `False`, creates a new timestamped branch. | `True` |
+| `TARGET_SUBDIR` | Subdirectory within repo (leave blank for root). | `"src"` or `""` |
 
-### 🧪 Example Configurations
-
-**1. Push to main branch (overwrite):**
-```
-GITHUB_USERNAME = "octocat"
-GITHUB_TOKEN = "ghp_..."
-REPO_NAME = "my-project"
-BRANCH = "main"
-OVERWRITE_BRANCH = True
-TARGET_SUBDIR = ""
-```
-
-**2. Create a new branch for review:**
-```
-GITHUB_USERNAME = "octocat"
-GITHUB_TOKEN = "ghp_..."
-REPO_NAME = "my-project"
-BRANCH = "main"
-OVERWRITE_BRANCH = False
-TARGET_SUBDIR = "mobile-upload"
-```
+> [!NOTE]
+>  The commit message is automatically set to `📤 Uploaded By Shineii86/GitUnzip` and cannot be changed — this ensures proper attribution.
 
 ---
 
-## 📊 Sample Output
+## 📊 Sample Output (Animated)
 
 ```
-📱 Mobile Zip to GitHub Uploader
-User: Shineii86
-Repo: my-uploaded-code
-Branch: main
+📱 GitUnzip - Mobile to GitHub Uploader
+User: Shineii86 | Repo: my-code | Branch: main
 ==================================================
 
-📤 Please upload your zip file...
-✅ Uploaded: project.zip (245760 bytes)
+📤 Please select your zip file...
+   (Tap 'Choose Files' below — your phone's file picker will open)
 
-📂 Extracting to temporary directory...
+✅ Uploaded: project.zip (2.45 MB)
+
+📂 Extracting zip file...
+Extracting: 100%|████████████| 47/47 [00:00<00:00, 156.32files/s]
 ✅ Extracted 47 files/folders
 
-📥 Cloning repository Shineii86/my-uploaded-code...
-✅ Repository cloned successfully
+📥 Cloning repository Shineii86/my-code...
+✅ Repository cloned
 
 📋 Copying files to repository...
+Copying: 100%|████████████| 47/47 [00:00<00:00, 210.45files/s]
 ✅ Copied 47 files
 
 💾 Committing changes...
-✅ Committed with message: '📱 Upload code from mobile via Colab'
+✅ Committed: '📤 Uploaded By [Shineii86/GitUnzip]'
 
 🚀 Pushing to GitHub (branch: main)...
+   This may take a moment...
+Pushing: 100%|████████████| 100/100 [00:02<00:00, 41.23it/s]
 ✅ Push successful!
 
 ==================================================
 ✨ Success! Your code is now on GitHub.
-📊 View it at: https://github.com/Shineii86/my-uploaded-code/tree/main
+📊 View it at: https://github.com/Shineii86/my-code/tree/main
 ```
 
 ---
 
 ## 🔬 How It Works
 
-1. **File Upload**: Colab's `files.upload()` opens a native file picker on your phone.
-2. **Extraction**: Python's `zipfile` module extracts contents to a temporary directory.
-3. **Repository Clone**: `GitPython` clones your target repository using the token for authentication.
-4. **File Copy**: All extracted files are recursively copied into the cloned repo.
-5. **Git Commit**: Changes are staged and committed with your custom message.
-6. **Git Push**: The commit is pushed to the specified branch (force‑push optional).
-7. **Cleanup**: All temporary directories and the uploaded zip are deleted.
+1. **Upload**: Colab's `files.upload()` opens a native file picker.
+2. **Extract**: `zipfile` extracts contents while `tqdm` shows progress.
+3. **Clone**: `GitPython` clones the target repo using your token.
+4. **Copy**: Files are recursively copied with a progress bar.
+5. **Commit**: Changes are committed with the watermark message.
+6. **Push**: Code is pushed to GitHub (force‑push optional).
+7. **Cleanup**: Temp files are deleted.
 
 ---
 
@@ -173,11 +143,10 @@ Branch: main
 
 | Issue | Solution |
 |-------|----------|
-| `Repository not found` | Ensure the repository name is correct and exists under your account. |
-| `Authentication failed` | Your token is incorrect or expired. Generate a new one with `repo` scope. |
-| `Push failed` | Try setting `OVERWRITE_BRANCH = False` to create a new branch. |
-| `No changes detected` | The files in your zip are identical to what's already in the repo. |
-| Upload hangs on large files | Be patient — large zips take longer. Consider splitting into smaller zips. |
+| `Repository not found` | Ensure the repo name is correct and exists. |
+| `Authentication failed` | Token is invalid or lacks `repo` scope. |
+| `Push failed` | Try setting `OVERWRITE_BRANCH = False`. |
+| Upload button doesn't appear | Re‑run the configuration cell. |
 
 ---
 
@@ -185,15 +154,12 @@ Branch: main
 
 This project is licensed under the **MIT License**.
 
-> ℹ️ This tool is intended to help developers manage code from mobile devices. Always review the contents of your zip before pushing to public repositories.
-
 ---
 
 ### 🔗 Quick Links
 
 - [Google Colab](https://colab.research.google.com/)
 - [GitHub Personal Access Tokens](https://github.com/settings/tokens)
-- [GitPython Documentation](https://gitpython.readthedocs.io/)
 
 ---
 
