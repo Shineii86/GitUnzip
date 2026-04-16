@@ -1,6 +1,6 @@
 <div align="center">
 
-[![Mobile Zip to GitHub Banner](https://raw.githubusercontent.com/Shineii86/GitUnzip/main/images/GitUnzip.png)](https://github.com/Shineii86/GitUnzip)
+<img src="https://raw.githubusercontent.com/Shineii86/GitUnzip/main/images/GitUnzip.png" width="200px" alt="GitUnzip">
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shineii86/GitUnzip/blob/main/notebooks/GitUnzip.ipynb)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
